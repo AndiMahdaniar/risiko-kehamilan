@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Pakar Diagnosis Risiko Kehamilan</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>SISTEM PAKAR</h1>
+        <p>Deteksi Risiko Kehamilan Ibu Hamil</p>
+    </div>
+
+    <div id="view-dashboard" class="view-section active">
+        <div class="welcome">
+            <p>Sistem ini membantu mendeteksi risiko kehamilan menggunakan metode <strong>Forward Chaining</strong></p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card stat-low">
+                <h3>KRR</h3>
+                <small>Kehamilan Risiko Rendah</small>
+            </div>
+            <div class="stat-card stat-medium">
+                <h3>KRT</h3>
+                <small>Kehamilan Risiko Tinggi</small>
+            </div>
+            <div class="stat-card stat-high">
+                <h3>KRST</h3>
+                <small>Kehamilan Risiko Sangat Tinggi</small>
+            </div>
+        </div>
+        
+        <div class="action">
+            <button class="btn btn-primary" onclick="showView('view-input')">Mulai Deteksi Mandiri</button>
+        </div>
+    </div>
+
+    <div id="view-input" class="view-section">
+        <h3>Input Data Diri Ibu Hamil</h3>
+        <p class="text-muted">Silakan lengkapi data diri di bawah ini, atau langsung lanjutkan ke pertanyaan skrining.</p>
+        
+        <div class="form-group">
+            <label>Nama Lengkap <span class="badge-optional">Opsional</span></label>
+            <input type="text" id="nama" placeholder="Masukkan nama...">
+        </div>
+        <div class="form-group">
+            <label>Usia (Tahun) <span class="badge-optional">Opsional</span></label>
+            <input type="number" id="usia_input" placeholder="Contoh: 25">
+        </div>
+        <div class="form-group">
+            <label>Lokasi / Alamat <span class="badge-optional">Opsional</span></label>
+            <input type="text" id="alamat" placeholder="Makassar...">
+        </div>
+
+        <div class="privacy-note">🔒 Data Anda tidak direkam di server manapun</div>
+        
+        <div class="button-group">
+            <button class="btn btn-secondary" onclick="showView('view-dashboard')">Kembali</button>
+            <button class="btn btn-primary" onclick="validateInput()">Lanjutkan ke Pertanyaan</button>
+        </div>
+    </div>
+
+    <div id="view-questions" class="view-section">
+        <h3>Skrining Faktor Risiko</h3>
+        <p class="text-muted">Silakan pilih kondisi yang sesuai dengan keadaan Anda saat ini:</p>
+        <div id="question-list" class="questions-list"></div>
+        <div class="action">
+            <button class="btn btn-primary" onclick="prosesForwardChaining()">Lihat Hasil Diagnosis</button>
+        </div>
+    </div>
+
+    <div id="view-result" class="view-section">
+        <h3>Hasil Diagnosis</h3>
+        <div id="result-display" class="result-box"></div>
+        <div class="action">
+            <button class="btn btn-secondary" onclick="location.reload()">Mulai Ulang</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/engine.js"></script>
+</body>
+</html>
